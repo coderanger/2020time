@@ -41,9 +41,10 @@ function render() {
     var days = Math.floor((new Date() - start) / 86400000) + 1 // 1000 * 60 * 60 * 24
     var localizedMonth = start.toLocaleString(navigator.language, { month: "long" })
     var ordinal = 'th'
-    if(days % 10 == 1) { ordinal = 'st' }
-    else if(days % 10 == 2) { ordinal = 'nd'; }
-    else if(days % 10 == 3) { ordinal = 'rd'; }
+    if(days % 100 >= 11 && days % 100 <= 13) { ordinal = 'th' }
+    else if(days % 10 == 1) { ordinal = 'st' }
+    else if(days % 10 == 2) { ordinal = 'nd' }
+    else if(days % 10 == 3) { ordinal = 'rd' }
     document.getElementById('date').innerHTML = localizedMonth + ' ' + days + ordinal
 }
 window.onhashchange = render
